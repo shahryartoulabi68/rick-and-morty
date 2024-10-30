@@ -1,6 +1,6 @@
 
 import "./App.css";
-import Navbar, { Result, Search } from "./Components/Navbar";
+import Navbar, { Result, Search, Favourit } from "./Components/Navbar";
 import CharacterList from "./Components/CharacterList.jsx";
 import CharacterDetail from "./Components/CharacterDetail.jsx";
 import { allCharacters, character } from '../data/data.js'
@@ -15,11 +15,19 @@ function App() {
   const [isLoding, setIsLoding] = useState(false)
   const [query, setQuery] = useState("")
   const [selectedId, setCelectedId] = useState(null)
+  const [favourit, setFavourit] = useState([])
 
   const handleSelectedId = (id) => {
-    setCelectedId(id)
+    setCelectedId((prevId) => prevId === id ? null : id)
   }
-  console.log(selectedId);
+
+  const handleFavourit = (char) => {
+    return setFavourit((prev) => [...prev, char])
+  }
+
+
+
+  const isFavourit = favourit.map((fav) => fav.id).includes(selectedId)
 
 
   useEffect(() => {
@@ -42,10 +50,14 @@ function App() {
     <Navbar >
       <Search query={query} setQuery={setQuery} />
       <Result numOfResualt={characters.length} />
+      <Favourit favourit={favourit.length} />
     </Navbar>
     <div className="main">
-      <CharacterList characters={characters} isLoding={isLoding} onSelectCharacter={handleSelectedId} />
-      <CharacterDetail selectedId={selectedId} />
+      <CharacterList characters={characters}
+        selectedId={selectedId}
+        isLoding={isLoding}
+        onSelectCharacter={handleSelectedId} />
+      <CharacterDetail selectedId={selectedId} onAddFavourit={handleFavourit} isFavourit={isFavourit} />
     </div>
 
   </div>)

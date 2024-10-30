@@ -50,7 +50,7 @@
 }
 
 .main {
-   display: flex;
+  display: flex;
   justify-content: space-between;
   width: 100%;
   gap: 2rem;
@@ -233,4 +233,8 @@
   .character-detail__info .actions {
     flex-direction: row;
   }
+}
+
+.upicon {
+  rotate: 180deg;
 }

@@ -1,7 +1,8 @@
 import { EyeIcon, ListBulletIcon } from "@heroicons/react/24/outline"
 import Loding from "./Loding";
+import { EyeSlashIcon } from "@heroicons/react/24/outline";
 
-function CharacterList({ characters, isLoding, onSelectCharacter }) {
+function CharacterList({ characters, isLoding, onSelectCharacter, selectedId }) {
     if (isLoding) {
         return <div className="characters-list">
             <Loding />
@@ -12,7 +13,10 @@ function CharacterList({ characters, isLoding, onSelectCharacter }) {
         <div className="character-list">
             {
                 characters.map((item) => {
-                    return <Character key={item.id} item={item} onSelectCharacter={onSelectCharacter} />
+                    return <Character key={item.id}
+                        selectedId={selectedId}
+                        item={item}
+                        onSelectCharacter={onSelectCharacter} />
                 })
             }
         </div>
@@ -20,7 +24,7 @@ function CharacterList({ characters, isLoding, onSelectCharacter }) {
 }
 export default CharacterList;
 
-function Character({ item, onSelectCharacter }) {
+function Character({ item, onSelectCharacter, selectedId }) {
     return <div className="list__item" key={item.id}>
         <img src={item.image} alt="" />
         <CharacterName item={item} />
@@ -28,7 +32,7 @@ function Character({ item, onSelectCharacter }) {
         <button className="icon red"
             value={item.id}
             onClick={() => onSelectCharacter(item.id)}>
-            <EyeIcon />
+            {selectedId === item.id ? < EyeSlashIcon /> : <EyeIcon />}
         </button>
     </div>
 
