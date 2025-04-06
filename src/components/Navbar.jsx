@@ -3,15 +3,14 @@ import Modal from "./Modal"
 import { useState } from "react"
 import { Character } from "./CharacterList"
 
-function Navbar({ children }) {
+export function Navbar({ children }) {
     return <div className="navbar">
         <div className="navbar__logo">LOGO😍</div>
         {children}
-
     </div>
 }
 
-export default Navbar
+// export default Navbar
 
 export function Search({ query, setQuery }) {
     return <input type="text"
