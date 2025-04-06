@@ -1,12 +1,12 @@
 
 import "./App.css";
-import { Result, Search, Favourit, Navbar } from "./Components/Navbar.jsx";
-import CharacterList from "./Components/CharacterList.jsx";
-import CharacterDetail from "./Components/CharacterDetail.jsx";
+import { Result, Search, Favourit, Navbar } from "./components/Navbar.jsx";
+import CharacterList from "./components/CharacterList.jsx";
+import CharacterDetail from "./components/CharacterDetail.jsx";
 import {  useState } from "react"
 import { Toaster } from 'react-hot-toast';
-import useCharacters from "./Components/hooks/useCharacters.js";
-import useLocalStorag from "./Components/hooks/useLocalStorag.js";
+import useCharacters from "./components/hooks/useCharacters.js";
+import useLocalStorag from "./components/hooks/useLocalStorag.js";
 
 
 
