@@ -18,9 +18,17 @@ function CharacterDetail({ selectedId, onAddFavourit, isFavourit }) {
         const episode = data.episode.map((e) => e.split("/").at(-1))
         axios.get(`https://rickandmortyapi.com/api/episode/${episode}`)
           .then(({ data: episode }) => setEpisodes([episode].flat().slice(0, 6)))
-          .catch()
+          .catch((error) => {
+            if (error.response) {
+              console.log(error.response.data); // => the response payload 
+            }
+          })
       })
-      .catch()
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data); // => the response payload 
+        }
+      })
       .finally(() => setIsLoding(false))
   }, [selectedId])
 
@@ -87,7 +95,7 @@ function EpisodesList({ episodes }) {
   return <div className="character-episodes">
     <div className="title">
       <p>list of episodes:</p>
-      <button> <ArrowUpCircleIcon  className={`icon ${sortBy ? "upicon":""}`} onClick={() => setSortBy((is) => !is)} /></button>
+      <button> <ArrowUpCircleIcon className={`icon ${sortBy ? "upicon" : ""}`} onClick={() => setSortBy((is) => !is)} /></button>
     </div>
     <ul>
       {sortEpisodes.map((item, index) => (

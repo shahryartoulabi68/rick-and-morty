@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Loding() {
-  return (<p> loding data....</p>
+  return (<p> loading data....</p>
   )
 }
 

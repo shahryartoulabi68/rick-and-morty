@@ -7,15 +7,21 @@ import { allCharacters, character } from '../data/data.js'
 import { useEffect, useState } from "react"
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import useCharacters from "./Components/hooks/useCharacters.js";
+import useLocalStorag from "./Components/hooks/useLocalStorag.js";
 
 
 
 function App() {
-  const [characters, setCharacters] = useState([]);
-  const [isLoding, setIsLoding] = useState(false)
+
   const [query, setQuery] = useState("")
+  const { characters, isLoding } = useCharacters(query)
   const [selectedId, setCelectedId] = useState(null)
-  const [favourit, setFavourit] = useState([])
+  // const [favourit, setFavourit] = useState(() => JSON.parse(localStorage.getItem("FAVOURIT")) || [])
+  // useEffect(() => {
+  //   localStorage.setItem("FAVOURIT", JSON.stringify(favourit))
+  // }, [favourit])
+  const [favourit, setFavourit] = useLocalStorag("FAVOURIT", [])
 
   const handleSelectedId = (id) => {
     setCelectedId((prevId) => prevId === id ? null : id)
@@ -25,32 +31,24 @@ function App() {
     return setFavourit((prev) => [...prev, char])
   }
 
-
+  const handleDeleteFav = (id) => {
+    const newFavourit = favourit.filter((f) => f.id !== id)
+    setFavourit(newFavourit)
+  }
 
   const isFavourit = favourit.map((fav) => fav.id).includes(selectedId)
 
 
-  useEffect(() => {
-    setIsLoding(true)
-    axios.get(`https://rickandmortyapi.com/api/character/?name=${query}`)
-      // .then((res) => {
-      //   if (!res.ok) throw new Error("no data is not defaind!!!")
-      //   return res.json()
-      // })
-      .then(({ data }) => setCharacters((data.results).slice(0, 4)))
-      .catch((err) => {
-        setCharacters([])
-        return toast.error(err.message)
-      })
-      .finally(() => setIsLoding(false))
-  }, [query])
+
+
+
 
   return (<div className="app">
     <Toaster />
     <Navbar >
       <Search query={query} setQuery={setQuery} />
       <Result numOfResualt={characters.length} />
-      <Favourit favourit={favourit.length} />
+      <Favourit favourit={favourit} onDelete={handleDeleteFav} />
     </Navbar>
     <div className="main">
       <CharacterList characters={characters}
@@ -64,3 +62,23 @@ function App() {
 }
 
 export default App;
+
+
+
+
+// useEffect(()=>{
+// async function fethData() {
+//   try {
+//     setLodering(true)
+//     const res = await fetch("wwww..dkkd")
+//     if (res.ok) throw new Erroe("hero si e cod")
+//     const data = await res.json()
+//     setDataBas(data.result)
+
+//   } catch (err) {
+//     reast.error(err.message)
+//   } finally {
+//     setLodering(false)
+//   }
+// }
+//   }, [])
