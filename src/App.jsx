@@ -1,6 +1,6 @@
 
 import "./App.css";
-import { Result, Search, Favourit, Navbar } from "./Components/Navbar";
+import { Result, Search, Favourit, Navbar } from "./Components/Navbar.jsx";
 import CharacterList from "./Components/CharacterList.jsx";
 import CharacterDetail from "./Components/CharacterDetail.jsx";
 import {  useState } from "react"
@@ -35,11 +35,6 @@ function App() {
   }
 
   const isFavourit = favourit.map((fav) => fav.id).includes(selectedId)
-
-
-
-
-
 
   return (<div className="app">
     <Toaster />
