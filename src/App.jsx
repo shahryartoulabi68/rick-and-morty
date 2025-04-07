@@ -59,19 +59,3 @@ export default App;
 
 
 
-// useEffect(()=>{
-// async function fethData() {
-//   try {
-//     setLodering(true)
-//     const res = await fetch("wwww..dkkd")
-//     if (res.ok) throw new Erroe("hero si e cod")
-//     const data = await res.json()
-//     setDataBas(data.result)
-
-//   } catch (err) {
-//     reast.error(err.message)
-//   } finally {
-//     setLodering(false)
-//   }
-// }
-//   }, [])
