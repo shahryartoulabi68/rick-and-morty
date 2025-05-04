@@ -80,7 +80,7 @@ button {
 .modal {
   width: 95%;
   min-height: 250px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -88,6 +88,9 @@ button {
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 1px 1px 50px var(--slate-600);
+  z-index: 1000;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal__header {
@@ -136,4 +139,5 @@ button {
   position: fixed;
   inset: 0;
   background-color: rgba(63, 69, 76, 0.8);
+  z-index: 999;
 }
