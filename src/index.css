@@ -79,7 +79,7 @@ button {
 
 .modal {
   width: 95%;
-  min-height: 250px;
+  min-height: 200px;
   position: fixed;
   top: 50%;
   left: 50%;
