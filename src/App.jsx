@@ -3,7 +3,7 @@ import "./App.css";
 import { Result, Search, Favourit, Navbar } from "./components/Navbar.jsx";
 import CharacterList from "./components/CharacterList.jsx";
 import CharacterDetail from "./components/CharacterDetail.jsx";
-import {  useState } from "react"
+import { useState } from "react"
 import { Toaster } from 'react-hot-toast';
 import useCharacters from "./components/hooks/useCharacters.js";
 import useLocalStorag from "./components/hooks/useLocalStorag.js";
@@ -15,10 +15,6 @@ function App() {
   const [query, setQuery] = useState("")
   const { characters, isLoding } = useCharacters(query)
   const [selectedId, setCelectedId] = useState(null)
-  // const [favourit, setFavourit] = useState(() => JSON.parse(localStorage.getItem("FAVOURIT")) || [])
-  // useEffect(() => {
-  //   localStorage.setItem("FAVOURIT", JSON.stringify(favourit))
-  // }, [favourit])
   const [favourit, setFavourit] = useLocalStorag("FAVOURIT", [])
 
   const handleSelectedId = (id) => {

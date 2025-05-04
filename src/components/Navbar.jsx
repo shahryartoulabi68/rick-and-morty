@@ -5,8 +5,14 @@ import { Character } from "./CharacterList"
 
 export function Navbar({ children }) {
     return <div className="navbar">
-        <div className="navbar__logo">LOGO😍</div>
-        {children}
+        <div className="navbar__top">
+            <div className="navbar__logo">LOGO😍</div>
+            {children[1]} {/* Result component */}
+            {children[2]} {/* Favourit component */}
+        </div>
+        <div className="navbar__search">
+            {children[0]} {/* Search component */}
+        </div>
     </div>
 }
 
